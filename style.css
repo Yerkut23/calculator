@@ -1,0 +1,95 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url('space.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+.calculator-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.banner {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  text-align: center;
+}
+
+.banner h1 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.calculator {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.calculator__display {
+  font-size: 2em;
+  padding: 10px;
+  text-align: right;
+  background-color: #333;
+}
+
+.calculator__keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+button {
+  font-size: 1.5em;
+  padding: 15px;
+  border: none;
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #666;
+}
+
+button:active {
+  background-color: #888;
+}
+
+button[data-action="calculate"] {
+  background-color: #28a745;
+}
+
+button[data-action="calculate"]:hover {
+  background-color: #218838;
+}
+
+button[data-action="clear"] {
+  background-color: #dc3545;
+}
+
+button[data-action="clear"]:hover {
+  background-color: #c82333;
+}
+
+button[data-action="decimal"],
+button[data-action="sqrt"],
+button[data-action="square"],
+button[data-action="inverse"] {
+  background-color: #007bff;
+}
+
+button[data-action="decimal"]:hover,
+button[data-action="sqrt"]:hover,
+button[data-action="square"]:hover,
+button[data-action="inverse"]:hover {
+  background-color: #0056b3;
+}
+

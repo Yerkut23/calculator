@@ -1,0 +1,75 @@
+// получаем элементы калькулятора
+const calculator = document.querySelector('.calculator');
+const display = calculator.querySelector('.calculator__display');
+const keys = calculator.querySelector('.calculator__keys');
+
+// добавляем обработчик события клика на кнопки
+keys.addEventListener('click', function(event) {
+  // если кликнули не на кнопку, то ничего не делаем
+  if (!event.target.matches('button')) return;
+
+  // получаем значение кнопки и дисплея
+  const key = event.target;
+  const action = key.dataset.action;
+  const keyContent = key.textContent;
+  const displayedNum = display.textContent;
+
+  // если кликнули на цифру, то обновляем дисплей
+  if (!action) {
+    // если на дисплее был 0, то заменяем его на цифру
+    // иначе добавляем цифру к дисплею
+    if (displayedNum === '0') {
+      display.textContent = keyContent;
+    } else {
+      display.textContent = displayedNum + keyContent;
+    }
+  }
+
+  // если кликнули на десятичную точку, то добавляем ее к дисплею
+  if (action === 'decimal') {
+    // если на дисплее уже есть точка, то ничего не делаем
+    // иначе добавляем точку к дисплею
+    if (!displayedNum.includes('.')) {
+      display.textContent = displayedNum + '.';
+    }
+  }
+
+  // если кликнули на оператор, то сохраняем его и очищаем дисплей
+  if (
+    action === 'add' ||
+    action === 'subtract' ||
+    action === 'multiply' ||
+    action === 'divide'
+  ) {
+    // сохраняем значение дисплея и оператор в атрибутах калькулятора
+    calculator.dataset.firstValue = displayedNum;
+    calculator.dataset.operator = action;
+    // очищаем дисплей
+    display.textContent = '0';
+  }
+
+  // если кликнули на равно, то вычисляем результат
+  if (action === 'calculate') {
+    // получаем первое значение, оператор и второе значение из атрибутов калькулятора и дисплея
+    const firstValue = calculator.dataset.firstValue;
+    const operator = calculator.dataset.operator;
+    const secondValue = displayedNum;
+
+    // если есть все три значения, то вычисляем результат
+    if (firstValue && operator && secondValue) {
+      // используем Math.js для вычисления выражения
+      const expression = firstValue + operator + secondValue;
+      const result = math.evaluate(expression);
+
+      // обновляем дисплей с результатом
+      display.textContent = result;
+    }
+  }
+
+  // если кликнули на сброс, то очищаем дисплей и атрибуты калькулятора
+  if (action === 'clear') {
+    display.textContent = '0';
+    calculator.dataset.firstValue = '';
+    calculator.dataset.operator = '';
+  }
+});
